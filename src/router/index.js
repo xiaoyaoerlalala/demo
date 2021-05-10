@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// 引入nprogress
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // 注意要引入css样式文件
 
@@ -41,7 +42,10 @@ const router = new VueRouter({
 })
 
 // 进度条的配置项：ease可以设置css3动画，如ease，linear；speed是进度条从开始到结束的耗时（其实这里设置时间和定时器一样，为了看得更明显）
-// NProgress.configure({ease:'linear',speed: 500});
+// NProgress.configure({ease:'linear',speed: 500})
+// 进度环显示隐藏
+NProgress.configure({showSpinner: false})
+
 router.beforeEach((to, from, next) => {
   NProgress.start() // 进度条开始
   // 这里为了看得清晰一些加了一个定时器，正式使用请去掉
@@ -53,7 +57,6 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  console.log('222222')
   NProgress.done() // 进度条结束
 })
 
